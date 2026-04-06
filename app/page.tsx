@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 export default function Home() {
 	const hanumanChalisa = `दोहा
 
@@ -135,9 +133,14 @@ export default function Home() {
 पवनतनय संकट हरन, मंगल मूरति रूप।
 राम लखन सीता सहित, हृदय बसहु सुर भूप।।
 `
+
 	return (
 		<>
-			<div className="whitespace-pre-line">{hanumanChalisa}</div>
+			<div className="min-h-screen py-10">
+				<h1 className="text-3xl font-bold text-center text-orange-700 mb-8">श्री हनुमान चालीसा</h1>
+
+				<div className="max-w-2xl mx-auto px-4 text-center whitespace-pre-line leading-loose text-lg">{hanumanChalisa}</div>
+			</div>
 		</>
 	)
 }
