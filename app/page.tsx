@@ -202,7 +202,7 @@ export default function Home() {
 	return (
 		<>
 			<div className="min-h-screen py-10">
-				<h1 className="text-3xl font-bold text-center text-primary mb-8">श्री हनुमान चालीसा</h1>
+				<h1 className="text-4xl font-bold text-center text-primary mb-8">श्री हनुमान चालीसा</h1>
 
 				<div className="max-w-2xl mx-auto px-4">
 					{hanumanChalisa.map((item, index) => (
@@ -211,8 +211,8 @@ export default function Home() {
 							key={index}
 							className={`p-4 rounded-xl border-2 transition ${lastReadIndex === index ? 'border-border  py-4 bg-secondary' : 'border-transparent'}`}>
 							{item.type === 'doha' ?
-								<h2 className="text-xl font-semibold text-center text-orange-600">{item.lines[0]}</h2>
-							:	<p className="text-center leading-loose text-lg whitespace-pre-line">{item.lines.join('\n')}</p>}
+								<h2 className="text-3xl font-semibold text-center text-orange-600">{item.lines[0]}</h2>
+							:	<p className="text-center leading-loose text-2xl whitespace-pre-line">{item.lines.join('\n')}</p>}
 						</div>
 					))}
 				</div>
