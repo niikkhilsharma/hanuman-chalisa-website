@@ -35,15 +35,16 @@ const prayersData: Record<
 	// Add more prayers here...
 }
 
-export async function GET(request: NextRequest, { params }: { params: { prayer: string } }) {
-	const prayer = prayersData[params.prayer]
+export async function GET(request: NextRequest, { params }: { params: Promise<{ prayer: string }> }) {
+	const { prayer: prayerSlug } = await params
+	const prayer = prayersData[prayerSlug]
 
 	if (!prayer) {
 		return new NextResponse('Not found', { status: 404 })
 	}
 
 	const baseUrl = request.nextUrl.origin
-	const pageUrl = `${baseUrl}/${params.prayer}`
+	const pageUrl = `${baseUrl}/${prayerSlug}`
 
 	const content = `# ${prayer.title}
 
