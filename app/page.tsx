@@ -1,222 +1,99 @@
-'use client'
+const prayers = [
+	{
+		title: 'Hanuman Chalisa',
+		deity: 'Lord Hanuman',
+		origin: 'Tulsidas • Awadhi',
+		verses: 40,
+		description: 'A devotional hymn of forty verses praising the glory, strength, and divine grace of Lord Hanuman.',
+		route: '/hanuman-chalisa',
+		symbol: '🙏',
+	},
+]
 
-import { useState, useEffect } from 'react'
+const upcomingPrayers = [
+	{ title: 'Gayatri Mantra', deity: 'Goddess Gayatri' },
+	{ title: 'Shiv Tandav Stotram', deity: 'Lord Shiva' },
+	{ title: 'Vishnu Sahasranamam', deity: 'Lord Vishnu' },
+]
 
 export default function Home() {
-	const hanumanChalisa = [
-		{
-			type: 'doha',
-			lines: ['दोहा'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['श्रीगुरु चरन सरोज रज , निजमन मुकुरु सुधारि।', 'बरनउं रघुबर बिमल जसु, जो दायक फल चारि।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['बुद्धिहीन तनु जानिके, सुमिरौं पवन-कुमार।', 'बल बुधि बिद्या देहु मोहिं, हरहु कलेस बिकार।।', 'चौपाई'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['जय हनुमान ज्ञान गुन सागर।', 'जय कपीस तिहुं लोक उजागर।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['राम दूत अतुलित बल धामा।', 'अंजनि-पुत्र पवनसुत नामा।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['महाबीर बिक्रम बजरंगी।', 'कुमति निवार सुमति के संगी।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['कंचन बरन बिराज सुबेसा।', 'कानन कुण्डल कुँचित केसा।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['हाथ बज्र औ ध्वजा बिराजे।', 'कांधे मूंज जनेउ साजे।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['शंकर सुवन केसरी नंदन।', 'तेज प्रताप महा जग वंदन।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['बिद्यावान गुनी अति चातुर।', 'राम काज करिबे को आतुर।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['प्रभु चरित्र सुनिबे को रसिया।', 'राम लखन सीता मन बसिया।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['सूक्ष्म रूप धरि सियहिं दिखावा।', 'बिकट रूप धरि लंक जरावा।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['भीम रूप धरि असुर संहारे।', 'रामचन्द्र के काज संवारे।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['लाय सजीवन लखन जियाये।', 'श्री रघुबीर हरषि उर लाये।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['रघुपति कीन्ही बहुत बड़ाई।', 'तुम मम प्रिय भरतहि सम भाई।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['सहस बदन तुम्हरो जस गावैं।', 'अस कहि श्रीपति कण्ठ लगावैं।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['सनकादिक ब्रह्मादि मुनीसा।', 'नारद सारद सहित अहीसा।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['जम कुबेर दिगपाल जहां ते।', 'कबि कोबिद कहि सके कहां ते।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['तुम उपकार सुग्रीवहिं कीन्हा।', 'राम मिलाय राज पद दीन्हा।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['तुम्हरो मंत्र बिभीषन माना।', 'लंकेश्वर भए सब जग जाना।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['जुग सहस्र जोजन पर भानु।', 'लील्यो ताहि मधुर फल जानू।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['प्रभु मुद्रिका मेलि मुख माहीं।', 'जलधि लांघि गये अचरज नाहीं।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['दुर्गम काज जगत के जेते।', 'सुगम अनुग्रह तुम्हरे तेते।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['राम दुआरे तुम रखवारे।', 'होत न आज्ञा बिनु पैसारे।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['सब सुख लहै तुम्हारी सरना।', 'तुम रच्छक काहू को डर ना।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['आपन तेज सम्हारो आपै।', 'तीनों लोक हांक तें कांपै।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['भूतपिसाच निकट नहिं आवै।', 'महाबीर जब नाम सुनावै।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['नासै रोग हरे सब पीरा।', 'जपत निरन्तर हनुमत बीरा।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['संकट तें हनुमान छुड़ावै।', 'मन क्रम बचन ध्यान जो लावै।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['सब पर राम तपस्वी राजा।', 'तिन के काज सकल तुम साजा।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['और मनोरथ जो कोई लावै।', 'सोई अमित जीवन फल पावै।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['चारों जुग परताप तुम्हारा।', 'है परसिद्ध जगत उजियारा।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['साधु संत के तुम रखवारे।', 'असुर निकन्दन राम दुलारे।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['अष्टसिद्धि नौ निधि के दाता।', 'अस बर दीन जानकी माता।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['राम रसायन तुम्हरे पासा।', 'सदा रहो रघुपति के दासा।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['तुह्मरे भजन राम को पावै।', 'जनम जनम के दुख बिसरावै।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['अंत काल रघुबर पुर जाई।', 'जहां जन्म हरिभक्त कहाई।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['और देवता चित्त न धरई।', 'हनुमत सेइ सर्ब सुख करई।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['संकट कटै मिटै सब पीरा।', 'जो सुमिरै हनुमत बलबीरा।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['जय जय जय हनुमान गोसाईं।', 'कृपा करहु गुरुदेव की नाईं।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['जो सत बार पाठ कर कोई।', 'छूटहि बन्दि महा सुख होई।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['जो यह पढ़ै हनुमान चालीसा।', 'होय सिद्धि साखी गौरीसा।।'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['तुलसीदास सदा हरि चेरा।', 'कीजै नाथ हृदय महं डेरा।।'],
-		},
-		{
-			type: 'doha',
-			lines: ['दोहा'],
-		},
-		{
-			type: 'chaupai',
-			lines: ['पवनतनय संकट हरन, मंगल मूरति रूप।', 'राम लखन सीता सहित, हृदय बसहु सुर भूप।।'],
-		},
-	]
-	const [lastReadIndex, setLastReadIndex] = useState<number | null>(null)
-
-	useEffect(() => {
-		const savedIndex = localStorage.getItem('lastReadIndex')
-		if (savedIndex) {
-			setLastReadIndex(parseInt(savedIndex))
-		}
-	}, [])
-
-	const markAsLastRead = (index: number) => {
-		setLastReadIndex(index)
-		localStorage.setItem('lastReadIndex', index.toString())
-	}
-
 	return (
-		<>
-			<div className="min-h-screen py-10">
-				<h1 className="text-4xl font-bold text-center text-primary mb-8">श्री हनुमान चालीसा</h1>
+		<div className="min-h-screen bg-[#1a0e08] text-[#f5e6d3]">
+			{/* Header */}
+			<header className="text-center pt-20 pb-4">
+				<div className="text-5xl mb-3 text-[#ff9800]">ॐ</div>
+				<h1 className="text-5xl md:text-7xl font-bold tracking-wide text-[#ffe0b2]">Prarthana</h1>
+				<p className="text-lg md:text-xl italic text-[#c49a6c] mt-2 tracking-widest">A sanctuary for sacred verses</p>
+			</header>
 
-				<div className="max-w-2xl mx-auto px-4">
-					{hanumanChalisa.map((item, index) => (
+			{/* Divider */}
+			<div className="flex items-center justify-center gap-4 mx-auto my-8 max-w-[300px]">
+				<span className="flex-1 h-px bg-[#8b5e3c]" />
+				<span className="text-sm text-[#c49a6c]">✦</span>
+				<span className="flex-1 h-px bg-[#8b5e3c]" />
+			</div>
+
+			{/* Intro */}
+			<section className="max-w-xl mx-auto mb-12 text-center px-6">
+				<p className="text-[17px] leading-7 font-light text-[#bfa07a]">
+					Immerse yourself in timeless devotional hymns. Read, recite, and reconnect with the divine through sacred prayers passed
+					down through generations.
+				</p>
+			</section>
+
+			{/* Sacred Prayers */}
+			<section className="max-w-3xl mx-auto mb-16 px-6">
+				<h2 className="text-3xl font-semibold text-center mb-8 tracking-wide text-[#ffe0b2]">Sacred Prayers</h2>
+
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+					{prayers.map(prayer => (
+						<a
+							key={prayer.title}
+							href={prayer.route}
+							className="block rounded-2xl overflow-hidden bg-[#2e1a0e] border border-[#3d2415] hover:-translate-y-1 hover:border-[#ff9800]/30 transition-transform duration-300">
+							<div className="py-7 px-6 flex items-center justify-between bg-gradient-to-br from-[#e65100] via-[#bf360c] to-[#8d1c06]">
+								<span className="text-4xl">{prayer.symbol}</span>
+								<span className="text-[13px] font-medium text-white/85 bg-black/25 px-3 py-1 rounded-full">
+									{prayer.verses} verses
+								</span>
+							</div>
+							<div className="p-6 flex flex-col gap-1">
+								<h3 className="text-2xl font-bold text-[#ffe0b2]">{prayer.title}</h3>
+								<p className="text-sm font-medium text-[#e8a54d]">{prayer.deity}</p>
+								<p className="text-[13px] italic text-[#8b6f50] mb-2">{prayer.origin}</p>
+								<p className="text-sm leading-relaxed font-light text-[#b08d6c]">{prayer.description}</p>
+								<div className="mt-4 text-[15px] font-semibold text-[#ff9800] flex items-center gap-2">
+									Read & Recite <span>→</span>
+								</div>
+							</div>
+						</a>
+					))}
+				</div>
+			</section>
+
+			{/* Coming Soon */}
+			<section className="max-w-3xl mx-auto mb-16 px-6">
+				<h2 className="text-3xl font-semibold text-center mb-8 tracking-wide text-[#ffe0b2]">Coming Soon</h2>
+				<div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+					{upcomingPrayers.map(p => (
 						<div
-							onClick={() => markAsLastRead(index)}
-							key={index}
-							className={`p-4 rounded-xl border-2 transition ${lastReadIndex === index ? 'border-border  py-4 bg-secondary' : 'border-transparent'}`}>
-							{item.type === 'doha' ?
-								<h2 className="text-3xl font-semibold text-center text-orange-600">{item.lines[0]}</h2>
-							:	<p className="text-center leading-loose text-2xl whitespace-pre-line">{item.lines.join('\n')}</p>}
+							key={p.title}
+							className="rounded-xl p-5 text-center relative bg-[#2e1a0e]/50 border border-dashed border-[#c49a6c]/20">
+							<span className="absolute top-3 right-3 text-[11px] font-semibold uppercase tracking-widest px-2.5 py-0.5 rounded-lg text-[#8b6f50] bg-[#8b6f50]/15">
+								Soon
+							</span>
+							<h4 className="text-xl font-semibold text-[#d4b896] mb-1">{p.title}</h4>
+							<p className="text-[13px] text-[#8b6f50]">{p.deity}</p>
 						</div>
 					))}
 				</div>
-			</div>
-		</>
+			</section>
+
+			{/* Footer */}
+			<footer className="text-center px-6 pt-10 pb-16">
+				<div className="text-3xl mb-3 text-[#5a3a20]">ॐ</div>
+				<p className="text-base italic tracking-wide text-[#5a3a20]">सर्वे भवन्तु सुखिनः — May all beings be happy</p>
+			</footer>
+		</div>
 	)
 }
