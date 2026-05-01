@@ -10,6 +10,14 @@ export default function Home() {
 			imageUrl: '/assets/images/prayers/hanuman-chalisa.jpg',
 			prayerUrl: '/hanuman-chalisa',
 		},
+		{
+			id: 2,
+			title: 'Durga Chalisa',
+			description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			route: '/durga-chalisa',
+			imageUrl: '/assets/images/prayers/durga-chalisa.png',
+			prayerUrl: '/durga-chalisa',
+		},
 	]
 
 	return (
