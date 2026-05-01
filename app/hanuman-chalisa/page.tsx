@@ -1,0 +1,222 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+
+export default function Home() {
+	const hanumanChalisa = [
+		{
+			type: 'doha',
+			lines: ['दोहा'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['श्रीगुरु चरन सरोज रज , निजमन मुकुरु सुधारि।', 'बरनउं रघुबर बिमल जसु, जो दायक फल चारि।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['बुद्धिहीन तनु जानिके, सुमिरौं पवन-कुमार।', 'बल बुधि बिद्या देहु मोहिं, हरहु कलेस बिकार।।', 'चौपाई'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['जय हनुमान ज्ञान गुन सागर।', 'जय कपीस तिहुं लोक उजागर।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['राम दूत अतुलित बल धामा।', 'अंजनि-पुत्र पवनसुत नामा।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['महाबीर बिक्रम बजरंगी।', 'कुमति निवार सुमति के संगी।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['कंचन बरन बिराज सुबेसा।', 'कानन कुण्डल कुँचित केसा।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['हाथ बज्र औ ध्वजा बिराजे।', 'कांधे मूंज जनेउ साजे।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['शंकर सुवन केसरी नंदन।', 'तेज प्रताप महा जग वंदन।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['बिद्यावान गुनी अति चातुर।', 'राम काज करिबे को आतुर।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['प्रभु चरित्र सुनिबे को रसिया।', 'राम लखन सीता मन बसिया।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['सूक्ष्म रूप धरि सियहिं दिखावा।', 'बिकट रूप धरि लंक जरावा।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['भीम रूप धरि असुर संहारे।', 'रामचन्द्र के काज संवारे।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['लाय सजीवन लखन जियाये।', 'श्री रघुबीर हरषि उर लाये।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['रघुपति कीन्ही बहुत बड़ाई।', 'तुम मम प्रिय भरतहि सम भाई।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['सहस बदन तुम्हरो जस गावैं।', 'अस कहि श्रीपति कण्ठ लगावैं।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['सनकादिक ब्रह्मादि मुनीसा।', 'नारद सारद सहित अहीसा।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['जम कुबेर दिगपाल जहां ते।', 'कबि कोबिद कहि सके कहां ते।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['तुम उपकार सुग्रीवहिं कीन्हा।', 'राम मिलाय राज पद दीन्हा।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['तुम्हरो मंत्र बिभीषन माना।', 'लंकेश्वर भए सब जग जाना।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['जुग सहस्र जोजन पर भानु।', 'लील्यो ताहि मधुर फल जानू।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['प्रभु मुद्रिका मेलि मुख माहीं।', 'जलधि लांघि गये अचरज नाहीं।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['दुर्गम काज जगत के जेते।', 'सुगम अनुग्रह तुम्हरे तेते।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['राम दुआरे तुम रखवारे।', 'होत न आज्ञा बिनु पैसारे।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['सब सुख लहै तुम्हारी सरना।', 'तुम रच्छक काहू को डर ना।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['आपन तेज सम्हारो आपै।', 'तीनों लोक हांक तें कांपै।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['भूतपिसाच निकट नहिं आवै।', 'महाबीर जब नाम सुनावै।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['नासै रोग हरे सब पीरा।', 'जपत निरन्तर हनुमत बीरा।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['संकट तें हनुमान छुड़ावै।', 'मन क्रम बचन ध्यान जो लावै।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['सब पर राम तपस्वी राजा।', 'तिन के काज सकल तुम साजा।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['और मनोरथ जो कोई लावै।', 'सोई अमित जीवन फल पावै।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['चारों जुग परताप तुम्हारा।', 'है परसिद्ध जगत उजियारा।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['साधु संत के तुम रखवारे।', 'असुर निकन्दन राम दुलारे।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['अष्टसिद्धि नौ निधि के दाता।', 'अस बर दीन जानकी माता।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['राम रसायन तुम्हरे पासा।', 'सदा रहो रघुपति के दासा।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['तुह्मरे भजन राम को पावै।', 'जनम जनम के दुख बिसरावै।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['अंत काल रघुबर पुर जाई।', 'जहां जन्म हरिभक्त कहाई।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['और देवता चित्त न धरई।', 'हनुमत सेइ सर्ब सुख करई।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['संकट कटै मिटै सब पीरा।', 'जो सुमिरै हनुमत बलबीरा।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['जय जय जय हनुमान गोसाईं।', 'कृपा करहु गुरुदेव की नाईं।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['जो सत बार पाठ कर कोई।', 'छूटहि बन्दि महा सुख होई।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['जो यह पढ़ै हनुमान चालीसा।', 'होय सिद्धि साखी गौरीसा।।'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['तुलसीदास सदा हरि चेरा।', 'कीजै नाथ हृदय महं डेरा।।'],
+		},
+		{
+			type: 'doha',
+			lines: ['दोहा'],
+		},
+		{
+			type: 'chaupai',
+			lines: ['पवनतनय संकट हरन, मंगल मूरति रूप।', 'राम लखन सीता सहित, हृदय बसहु सुर भूप।।'],
+		},
+	]
+	const [lastReadIndex, setLastReadIndex] = useState<number | null>(null)
+
+	useEffect(() => {
+		const savedIndex = localStorage.getItem('lastReadIndex')
+		if (savedIndex) {
+			setLastReadIndex(parseInt(savedIndex))
+		}
+	}, [])
+
+	const markAsLastRead = (index: number) => {
+		setLastReadIndex(index)
+		localStorage.setItem('lastReadIndex', index.toString())
+	}
+
+	return (
+		<>
+			<div className="min-h-screen py-10">
+				<h1 className="text-4xl font-bold text-center text-primary mb-8">श्री हनुमान चालीसा</h1>
+
+				<div className="max-w-2xl mx-auto px-4">
+					{hanumanChalisa.map((item, index) => (
+						<div
+							onClick={() => markAsLastRead(index)}
+							key={index}
+							className={`p-4 rounded-xl border-2 transition ${lastReadIndex === index ? 'border-border  py-4 bg-secondary' : 'border-transparent'}`}>
+							{item.type === 'doha' ?
+								<h2 className="text-3xl font-semibold text-center text-orange-600">{item.lines[0]}</h2>
+							:	<p className="text-center leading-loose text-2xl whitespace-pre-line">{item.lines.join('\n')}</p>}
+						</div>
+					))}
+				</div>
+			</div>
+		</>
+	)
+}
