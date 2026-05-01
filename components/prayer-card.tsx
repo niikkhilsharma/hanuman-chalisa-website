@@ -30,10 +30,18 @@ export default function PrayerCard({
 	}
 
 	return (
-		<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+		<>
 			{prayers.map(prayer => (
-				<Card key={prayer.id} className="relative">
-					<Image src={prayer.imageUrl} alt={prayer.title} width={400} height={300} />
+				<Card key={prayer.id} className="relative pt-0">
+					<div className="max-h-58 overflow-hidden">
+						<Image
+							src={prayer.imageUrl}
+							alt={prayer.title}
+							width={400}
+							height={300}
+							className="w-full object-cover hover:scale-110 transition-transform ease-in-out"
+						/>
+					</div>
 
 					<CardHeader>
 						<CardTitle>{prayer.title}</CardTitle>
@@ -50,6 +58,6 @@ export default function PrayerCard({
 					</CardFooter>
 				</Card>
 			))}
-		</div>
+		</>
 	)
 }
